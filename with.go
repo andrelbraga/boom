@@ -3,7 +3,6 @@ package boom
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/swag"
-	"google.golang.org/grpc"
 )
 
 // WithContainer adds a container to the server
@@ -34,10 +33,10 @@ func WithBaseHandler(h gin.HandlerFunc) APIOption {
 	}
 }
 
-// WithHealthz add a healthz handler
-func WithHealthz(h gin.HandlerFunc) APIOption {
+// WithHealthz default response time.now()
+func WithHealthz() APIOption {
 	return func(server *API) {
-		server.Healthz = h
+		server.Healthz = true
 	}
 }
 
@@ -48,12 +47,5 @@ func WithSwagger(spec *swag.Spec, path string) APIOption {
 			Spec: spec,
 			Path: path,
 		}
-	}
-}
-
-// WithGRPC ...
-func WithGRPC(grpcServer *grpc.Server) APIOption {
-	return func(server *API) {
-		server.GrpcServer = grpcServer
 	}
 }

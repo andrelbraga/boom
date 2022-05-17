@@ -1,4 +1,5 @@
 package boom
+
 import "github.com/gin-gonic/gin"
 
 type Container interface {
